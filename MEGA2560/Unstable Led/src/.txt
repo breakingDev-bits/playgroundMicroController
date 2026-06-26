@@ -1,0 +1,25 @@
+#include <Arduino.h>
+#include <math.h>
+
+#define LED_PIN 2
+
+float time = 0.1f; 
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(LED_PIN, OUTPUT); 
+}
+
+void loop() {
+  float bright = (cosf(time) + 1.0f) / 2.0f;
+  time += 2 * ((sinf(bright)) + 0.1f);
+
+  bright = bright * 255.0f;
+
+
+  analogWrite(LED_PIN, (int)bright);
+
+  Serial.println(bright);
+
+  delay(50);
+}
